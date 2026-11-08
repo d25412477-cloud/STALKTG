@@ -3,8 +3,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#ffffff">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STALKTG</title>
 
 <style>
@@ -14,59 +13,67 @@
 
 body {
   margin: 0;
-  background: #f4f5f7;
-  color: #222;
-  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #000000;
+  font-family: Roboto, Arial, sans-serif;
 }
 
-button {
-  font: inherit;
+.app {
+  max-width: 600px;
+  min-height: 100vh;
+  margin: auto;
+  background: white;
+  position: relative;
+  padding-bottom: 70px;
+}
+
+.header {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 25px;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.menu {
   border: none;
+  background: none;
+  font-size: 25px;
+  color: #707579;
   cursor: pointer;
 }
 
-header {
-  height: 76px;
-  background: white;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  gap: 12px;
-}
-
-.logo {
-  font-size: 29px;
-  font-weight: bold;
-  color: #159447;
+.title {
+  font-size: 20px;
+  font-weight: 600;
   flex: 1;
 }
 
-.icon-button {
-  width: 42px;
-  height: 42px;
-  background: transparent;
-  font-size: 27px;
-  color: #222;
-}
-
-.screen {
-  display: none;
-  min-height: calc(100vh - 150px);
-  padding-bottom: 100px;
-}
-
-.screen.active {
-  display: block;
+.header-icons {
+  display: flex;
+  gap: 20px;
+  font-size: 23px;
+  color: #707579;
 }
 
 .search {
-  margin: 12px 16px;
-  background: white;
-  border-radius: 30px;
-  padding: 14px 18px;
+  margin: 5px 12px 12px;
+  height: 42px;
+  border-radius: 8px;
+  background: #f1f1f1;
   display: flex;
   align-items: center;
-  gap: 12px;
+  padding: 0 12px;
+  gap: 10px;
+}
+
+.search span {
+  color: #8e969c;
+  font-size: 19px;
 }
 
 .search input {
@@ -77,784 +84,465 @@ header {
   font-size: 16px;
 }
 
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 10px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.tab {
+  border: none;
+  background: none;
+  color: #707579;
+  font-size: 14px;
+  padding: 13px 15px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tab.active {
+  color: #3390ec;
+  font-weight: 600;
+  border-bottom: 2px solid #3390ec;
+}
+
 .chat {
   display: flex;
   align-items: center;
-  padding: 15px 18px;
-  gap: 14px;
-  background: white;
-  min-height: 95px;
+  padding: 10px 12px;
+  min-height: 74px;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.chat:active {
+  background: #eeeeee;
 }
 
 .avatar {
-  width: 66px;
-  height: 66px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
-  background: #59a4e8;
-  color: white;
+  background: #dce8f4;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 26px;
   flex-shrink: 0;
   overflow: hidden;
 }
 
-.avatar.pink {
-  background: #e86c9d;
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.avatar.purple {
-  background: #8b55dc;
-}
-
-.avatar.green {
-  background: #31b85c;
-}
-
-.info {
+.chat-info {
   flex: 1;
   min-width: 0;
 }
 
-.name {
-  font-size: 18px;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.chat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
 }
 
-.message {
-  margin-top: 7px;
-  color: #888;
+.chat-name {
   font-size: 16px;
-  white-space: nowrap;
+  font-weight: 600;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 .time {
-  color: #999;
-  font-size: 13px;
-  align-self: flex-start;
+  font-size: 12px;
+  color: #8e969c;
   white-space: nowrap;
 }
 
-.green {
-  color: #159447;
+.chat-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+  gap: 6px;
+}
+
+.message {
+  font-size: 14px;
+  color: #8e969c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.unread {
+  background: #3390ec;
+  color: white;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 12px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
 }
 
 .fab {
   position: fixed;
-  right: 24px;
-  bottom: 105px;
-  width: 62px;
-  height: 62px;
+  right: max(calc((100vw - 600px) / 2 + 18px), 18px);
+  bottom: 82px;
+  width: 56px;
+  height: 56px;
+  border: none;
   border-radius: 50%;
-  background: #19b647;
+  background: #3390ec;
   color: white;
-  font-size: 30px;
-  box-shadow: 0 3px 12px #0002;
+  font-size: 25px;
+  box-shadow: 0 3px 8px #0002;
+  cursor: pointer;
+  z-index: 4;
 }
 
 .bottom {
   position: fixed;
-  bottom: 12px;
-  left: 12px;
-  right: 12px;
-  height: 82px;
-  border-radius: 32px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  height: 65px;
   background: white;
-  box-shadow: 0 2px 12px #0002;
+  border-top: 1px solid #eeeeee;
   display: flex;
-  align-items: center;
   justify-content: space-around;
-  z-index: 10;
+  align-items: center;
+  z-index: 6;
 }
 
 .nav {
   flex: 1;
-  height: 68px;
-  border-radius: 25px;
-  background: transparent;
-  color: #222;
-  font-size: 25px;
+  border: none;
+  background: none;
+  height: 100%;
+  color: #8e969c;
+  font-size: 11px;
+  cursor: pointer;
 }
 
-.nav span {
+.nav .emoji {
   display: block;
-  font-size: 14px;
-  margin-top: 5px;
+  font-size: 23px;
+  margin-bottom: 3px;
 }
 
 .nav.active {
-  background: #e8f6eb;
-  color: #159447;
-  font-weight: bold;
+  color: #3390ec;
 }
 
-.heading {
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.simple-page {
   padding: 20px;
-  font-size: 27px;
-  font-weight: bold;
 }
 
-.card {
-  margin: 12px;
-  padding: 20px;
-  background: white;
-  border-radius: 22px;
+.simple-page h2 {
+  font-size: 21px;
+  font-weight: 600;
 }
 
-.setting {
-  padding: 17px 5px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.setting-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 23px;
-  color: white;
-  background: #3399e9;
-}
-
-.setting-name {
-  font-size: 19px;
-}
-
-.setting-desc {
-  margin-top: 6px;
-  color: #999;
-  font-size: 14px;
-}
-
-.profile-top {
+.profile {
   text-align: center;
-  padding: 25px 15px;
+  padding: 25px;
 }
 
 .profile-avatar {
-  width: 115px;
-  height: 115px;
-  margin: auto;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background: #252525;
-  color: white;
+  margin: 10px auto;
+  background: #dce8f4;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
+  font-size: 45px;
 }
 
 .profile-name {
-  font-size: 27px;
-  font-weight: bold;
-  margin-top: 22px;
+  font-size: 21px;
+  font-weight: 600;
 }
 
-.profile-username {
-  color: #999;
-  margin-top: 8px;
-}
-
-.profile-actions {
-  display: flex;
-  gap: 8px;
-  margin: 0 12px;
-}
-
-.profile-actions button {
-  flex: 1;
-  background: white;
-  border-radius: 20px;
-  padding: 18px 5px;
-  font-size: 14px;
-}
-
-.tabs {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-}
-
-.tabs button {
-  padding: 12px;
-  border-radius: 25px;
-  background: #f1f2f5;
-  color: #888;
-  white-space: nowrap;
-}
-
-.tabs button.active {
-  background: #e8f6eb;
-  color: #159447;
-  font-weight: bold;
-}
-
-.page-title {
-  padding: 20px;
-  font-size: 27px;
-  font-weight: bold;
-}
-
-.contact {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 13px 18px;
-  background: white;
-}
-
-.contact-status {
-  color: #999;
+.profile-phone {
+  color: #8e969c;
   margin-top: 6px;
-  font-size: 14px;
 }
 
-input, textarea {
-  font-family: Arial, sans-serif;
+.setting-row {
+  padding: 17px 5px;
+  border-bottom: 1px solid #eeeeee;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-@media (max-width: 380px) {
-  .logo {
-    font-size: 25px;
-  }
-
-  .nav span {
-    font-size: 12px;
-  }
-
-  .avatar {
-    width: 58px;
-    height: 58px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">STALKTG</div>
-  <button class="icon-button" onclick="searchChats()">⌕</button>
-  <button class="icon-button" onclick="menu()">⋮</button>
-</header>
+<div class="app">
 
-<!-- ЧАТЫ -->
+  <div id="chats" class="page active">
 
-<section id="chats" class="screen active">
-
-  <div class="search">
-    🔍
-    <input id="chatSearch"
-      placeholder="Поиск"
-      oninput="filterChats()">
-  </div>
-
-  <div id="chatList">
-
-    <div class="chat">
-      <div class="avatar">ST</div>
-      <div class="info">
-        <div class="name">STALKTG</div>
-        <div class="message">Добро пожаловать! 👋</div>
+    <header class="header">
+      <button class="menu" onclick="showPage('settings')">☰</button>
+      <div class="title">STALKTG</div>
+      <div class="header-icons">
+        <span onclick="alert('Поиск')">⌕</span>
+        <span onclick="alert('Новая группа')">＋</span>
       </div>
-      <div class="time">09:40</div>
+    </header>
+
+    <div class="search">
+      <span>⌕</span>
+      <input id="searchInput" placeholder="Поиск" oninput="searchChats()">
     </div>
-
-    <div class="chat">
-      <div class="avatar pink">SA</div>
-      <div class="info">
-        <div class="name">Santiago</div>
-        <div class="message">Привет!</div>
-      </div>
-      <div class="time">09:38</div>
-    </div>
-
-    <div class="chat">
-      <div class="avatar purple">🎁</div>
-      <div class="info">
-        <div class="name">Подарки STALKTG</div>
-        <div class="message">Наши подарки</div>
-      </div>
-      <div class="time">09:30</div>
-    </div>
-
-    <div class="chat">
-      <div class="avatar green">👥</div>
-      <div class="info">
-        <div class="name">Общий чат</div>
-        <div class="message">Общение пользователей</div>
-      </div>
-      <div class="time">09:20</div>
-    </div>
-
-  </div>
-
-  <button class="fab" onclick="newChat()">✉</button>
-
-</section>
-
-<!-- КОНТАКТЫ -->
-
-<section id="contacts" class="screen">
-
-  <div class="page-title">Мои контакты</div>
-
-  <div class="search">
-    🔍
-    <input id="contactSearch"
-      placeholder="Поиск контактов"
-      oninput="filterContacts()">
-  </div>
-
-  <div class="card">
-
-    <div class="setting" onclick="invite()">
-      <div class="setting-icon">👤</div>
-      <div class="setting-name">Пригласить друзей</div>
-    </div>
-
-    <div class="setting" onclick="alert('Здесь будут недавние звонки')">
-      <div class="setting-icon" style="background:#35bb55">☎</div>
-      <div class="setting-name">Недавние звонки</div>
-    </div>
-
-  </div>
-
-  <div class="card">
-    <div class="green" style="font-weight:bold;margin-bottom:15px">
-      Сортировка по времени захода
-    </div>
-
-    <div id="contactList">
-
-      <div class="contact">
-        <div class="avatar pink">SA</div>
-        <div>
-          <div class="name">Santiago</div>
-          <div class="contact-status">В сети</div>
-        </div>
-      </div>
-
-      <div class="contact">
-        <div class="avatar">ST</div>
-        <div>
-          <div class="name">STALKTG</div>
-          <div class="contact-status">Был недавно</div>
-        </div>
-      </div>
-
-      <div class="contact">
-        <div class="avatar purple">👤</div>
-        <div>
-          <div class="name">Новый пользователь</div>
-          <div class="contact-status">Был недавно</div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <button class="fab" onclick="newContact()">＋</button>
-
-</section>
-
-<!-- НАСТРОЙКИ -->
-
-<section id="settings" class="screen">
-
-  <div class="profile-top">
-    <div class="profile-avatar">ST</div>
-    <div class="profile-name" id="settingsName">Santiago</div>
-    <div class="profile-username">@stalktg</div>
-  </div>
-
-  <div class="card">
-
-    <div class="setting" onclick="editProfile()">
-      <div class="setting-icon">👤</div>
-      <div>
-        <div class="setting-name">Аккаунт</div>
-        <div class="setting-desc">Имя пользователя, информация</div>
-      </div>
-    </div>
-
-    <div class="setting" onclick="alert('Настройки чатов')">
-      <div class="setting-icon" style="background:#e9a326">💬</div>
-      <div>
-        <div class="setting-name">Настройки чатов</div>
-        <div class="setting-desc">Обои, темы, оформление</div>
-      </div>
-    </div>
-
-    <div class="setting" onclick="alert('Настройки конфиденциальности')">
-      <div class="setting-icon" style="background:#35bb55">🔑</div>
-      <div>
-        <div class="setting-name">Конфиденциальность</div>
-        <div class="setting-desc">Время захода, безопасность</div>
-      </div>
-    </div>
-
-    <div class="setting" onclick="alert('Настройки уведомлений')">
-      <div class="setting-icon" style="background:#e65c76">🔔</div>
-      <div>
-        <div class="setting-name">Уведомления</div>
-        <div class="setting-desc">Звуки, сообщения</div>
-      </div>
-    </div>
-
-    <div class="setting" onclick="alert('Настройки памяти')">
-      <div class="setting-icon" style="background:#4389e9">📊</div>
-      <div>
-        <div class="setting-name">Данные и память</div>
-        <div class="setting-desc">Загрузка медиафайлов</div>
-      </div>
-    </div>
-
-    <div class="setting" onclick="alert('Управление устройствами')">
-      <div class="setting-icon" style="background:#35b7b7">💻</div>
-      <div>
-        <div class="setting-name">Устройства</div>
-        <div class="setting-desc">Активные сеансы</div>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ПРОФИЛЬ -->
-
-<section id="profile" class="screen">
-
-  <div class="profile-top">
-
-    <div class="profile-avatar" id="profileAvatar">ST</div>
-
-    <div class="profile-name" id="profileName">Santiago</div>
-
-    <div class="profile-username" id="profileUsername">
-      @stalktg
-    </div>
-
-  </div>
-
-  <div class="profile-actions">
-
-    <button onclick="changePhoto()">📷<br>Выбрать фото</button>
-
-    <button onclick="editProfile()">✏️<br>Изменить</button>
-
-    <button onclick="openScreen('settings')">⚙️<br>Настройки</button>
-
-  </div>
-
-  <div class="card">
-
-    <div class="green" style="font-weight:bold">
-      Канал
-    </div>
-
-    <div class="contact" style="padding-left:0">
-      <div class="avatar pink">ST</div>
-      <div>
-        <div class="name">STALKTG</div>
-        <div class="contact-status">Наш официальный канал</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <div style="padding:12px 0">
-      <div id="profilePhone">Номер не указан</div>
-      <div class="contact-status">Номер телефона</div>
-    </div>
-
-    <div style="padding:12px 0">
-      <div id="profileUser">@stalktg</div>
-      <div class="contact-status">Username</div>
-    </div>
-
-    <div style="padding:12px 0">
-      <div id="profileBio">Привет! Я в STALKTG</div>
-      <div class="contact-status">О себе</div>
-    </div>
-
-  </div>
-
-  <div class="card">
 
     <div class="tabs">
-      <button class="active">Публикации</button>
-      <button>Архив публикаций</button>
-      <button onclick="openScreen('gifts')">Подарки</button>
+      <button class="tab active" onclick="filterChats('all',this)">Все чаты</button>
+      <button class="tab" onclick="filterChats('personal',this)">Личные</button>
+      <button class="tab" onclick="filterChats('groups',this)">Группы</button>
+      <button class="tab" onclick="filterChats('channels',this)">Каналы</button>
     </div>
 
-    <p style="color:#999;text-align:center;padding:20px">
-      Здесь будут твои публикации
-    </p>
+    <div id="chatList">
 
+      <div class="chat" data-type="personal" onclick="openChat('Избранное','⭐')">
+        <div class="avatar">⭐</div>
+        <div class="chat-info">
+          <div class="chat-top">
+            <span class="chat-name">Избранное</span>
+            <span class="time">10:20</span>
+          </div>
+          <div class="chat-bottom">
+            <span class="message">Сохранённые сообщения</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat" data-type="personal" onclick="openChat('STALKTG','📱')">
+        <div class="avatar">📱</div>
+        <div class="chat-info">
+          <div class="chat-top">
+            <span class="chat-name">STALKTG</span>
+            <span class="time">09:45</span>
+          </div>
+          <div class="chat-bottom">
+            <span class="message">Добро пожаловать!</span>
+            <span class="unread">1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat" data-type="groups" onclick="openChat('Общая группа','👥')">
+        <div class="avatar">👥</div>
+        <div class="chat-info">
+          <div class="chat-top">
+            <span class="chat-name">Общая группа</span>
+            <span class="time">Вчера</span>
+          </div>
+          <div class="chat-bottom">
+            <span class="message">Группа STALKTG</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat" data-type="channels" onclick="openChat('Новости','📢')">
+        <div class="avatar">📢</div>
+        <div class="chat-info">
+          <div class="chat-top">
+            <span class="chat-name">Новости</span>
+            <span class="time">Пн</span>
+          </div>
+          <div class="chat-bottom">
+            <span class="message">Новости приложения</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="fab" onclick="newChat()">✎</button>
   </div>
 
-</section>
-
-<!-- ПОДАРКИ -->
-
-<section id="gifts" class="screen">
-
-  <div class="page-title">🎁 Подарки STALKTG</div>
-
-  <div class="card">
-    <h3>Наши подарки</h3>
-    <p>Здесь будут уникальные подарки STALKTG.</p>
-    <p>Позже добавим коллекцию, магазин и покупку подарков.</p>
+  <div id="contacts" class="page simple-page">
+    <h2>Контакты</h2>
+    <div class="setting-row" onclick="newChat()">＋ Добавить контакт</div>
+    <p style="color:#8e969c">Здесь будут твои контакты STALKTG.</p>
   </div>
 
-</section>
+  <div id="calls" class="page simple-page">
+    <h2>Звонки</h2>
+    <p style="color:#8e969c">История звонков появится здесь.</p>
+  </div>
 
-<!-- НИЖНЯЯ ПАНЕЛЬ -->
+  <div id="settings" class="page simple-page">
+    <h2>Настройки</h2>
 
-<nav class="bottom">
+    <div class="setting-row" onclick="showPage('profile')">👤 Мой профиль</div>
+    <div class="setting-row" onclick="alert('Уведомления')">🔔 Уведомления</div>
+    <div class="setting-row" onclick="alert('Конфиденциальность')">🔒 Конфиденциальность</div>
+    <div class="setting-row" onclick="alert('Оформление')">🎨 Оформление</div>
+    <div class="setting-row" onclick="showPage('gifts')">🎁 Подарки</div>
+    <div class="setting-row">ℹ️ STALKTG версия 1.0</div>
+  </div>
 
-  <button class="nav active"
-    onclick="openScreen('chats',this)">
-    ☏
-    <span>Чаты</span>
-  </button>
+  <div id="profile" class="page">
+    <header class="header">
+      <button class="menu" onclick="showPage('settings')">‹</button>
+      <div class="title">Мой профиль</div>
+    </header>
 
-  <button class="nav"
-    onclick="openScreen('contacts',this)">
-    ♙
-    <span>Контакты</span>
-  </button>
+    <div class="profile">
+      <div class="profile-avatar">👤</div>
+      <div class="profile-name">Мой аккаунт</div>
+      <div class="profile-phone">STALKTG</div>
+    </div>
 
-  <button class="nav"
-    onclick="openScreen('settings',this)">
-    ⚙
-    <span>Настройки</span>
-  </button>
+    <div class="simple-page">
+      <div class="setting-row">Имя: Пользователь</div>
+      <div class="setting-row">О себе: Привет!</div>
+      <div class="setting-row">Подарки: 0</div>
+    </div>
+  </div>
 
-  <button class="nav"
-    onclick="openScreen('profile',this)">
-    👤
-    <span>Профиль</span>
-  </button>
+  <div id="gifts" class="page simple-page">
+    <h2>🎁 Подарки</h2>
+    <p style="color:#8e969c">Здесь будут наши собственные подарки.</p>
+    <div class="setting-row">🎁 Подарок STALKTG</div>
+  </div>
 
-</nav>
+  <nav class="bottom">
+    <button class="nav active" onclick="showPage('chats',this)">
+      <span class="emoji">💬</span>Чаты
+    </button>
+
+    <button class="nav" onclick="showPage('contacts',this)">
+      <span class="emoji">👥</span>Контакты
+    </button>
+
+    <button class="nav" onclick="showPage('calls',this)">
+      <span class="emoji">📞</span>Звонки
+    </button>
+
+    <button class="nav" onclick="showPage('settings',this)">
+      <span class="emoji">⚙️</span>Настройки
+    </button>
+  </nav>
+
+</div>
 
 <script>
 
-let currentName = "Santiago";
-let currentUsername = "stalktg";
-let currentBio = "Привет! Я в STALKTG";
-
-function openScreen(id, button) {
-
-  document.querySelectorAll(".screen").forEach(s => {
-    s.classList.remove("active");
+function showPage(page, button) {
+  document.querySelectorAll('.page').forEach(function(p) {
+    p.classList.remove('active');
   });
 
-  const target = document.getElementById(id);
+  const selected = document.getElementById(page);
 
-  if (target) {
-    target.classList.add("active");
+  if (selected) {
+    selected.classList.add('active');
   }
 
-  document.querySelectorAll(".nav").forEach(n => {
-    n.classList.remove("active");
+  document.querySelectorAll('.nav').forEach(function(n) {
+    n.classList.remove('active');
   });
 
   if (button) {
-    button.classList.add("active");
+    button.classList.add('active');
+  } else {
+    document.querySelectorAll('.nav').forEach(function(n) {
+      if (n.getAttribute('onclick').includes("'" + page + "'")) {
+        n.classList.add('active');
+      }
+    });
   }
-
-  window.scrollTo(0, 0);
-
 }
 
 function searchChats() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
 
-  openScreen("chats");
+  document.querySelectorAll('#chatList .chat').forEach(function(chat) {
+    const name = chat.querySelector('.chat-name').textContent.toLowerCase();
 
-  document.getElementById("chatSearch").focus();
-
+    chat.style.display = name.includes(query) ? 'flex' : 'none';
+  });
 }
 
-function menu() {
+function filterChats(type, button) {
+  document.querySelectorAll('.tab').forEach(function(tab) {
+    tab.classList.remove('active');
+  });
 
-  alert("Меню STALKTG");
+  button.classList.add('active');
 
-}
-
-function filterChats() {
-
-  const query = document
-    .getElementById("chatSearch")
-    .value.toLowerCase();
-
-  document.querySelectorAll("#chatList .chat")
-    .forEach(chat => {
-
-      chat.style.display =
-        chat.textContent.toLowerCase().includes(query)
-        ? "flex"
-        : "none";
-
-    });
-
-}
-
-function filterContacts() {
-
-  const query = document
-    .getElementById("contactSearch")
-    .value.toLowerCase();
-
-  document.querySelectorAll("#contactList .contact")
-    .forEach(contact => {
-
-      contact.style.display =
-        contact.textContent.toLowerCase().includes(query)
-        ? "flex"
-        : "none";
-
-    });
-
+  document.querySelectorAll('#chatList .chat').forEach(function(chat) {
+    if (type === 'all' || chat.dataset.type === type) {
+      chat.style.display = 'flex';
+    } else {
+      chat.style.display = 'none';
+    }
+  });
 }
 
 function newChat() {
-
-  const name = prompt("Имя нового чата");
+  const name = prompt('Имя нового контакта:');
 
   if (!name || !name.trim()) return;
 
-  const chat = document.createElement("div");
-
-  chat.className = "chat";
+  const chat = document.createElement('div');
+  chat.className = 'chat';
+  chat.dataset.type = 'personal';
 
   chat.innerHTML = `
     <div class="avatar">👤</div>
-    <div class="info">
-      <div class="name"></div>
-      <div class="message">Новый чат</div>
+    <div class="chat-info">
+      <div class="chat-top">
+        <span class="chat-name"></span>
+        <span class="time">Сейчас</span>
+      </div>
+      <div class="chat-bottom">
+        <span class="message">Новый чат</span>
+      </div>
     </div>
   `;
 
-  chat.querySelector(".name").textContent = name;
+  chat.querySelector('.chat-name').textContent = name.trim();
 
-  document.getElementById("chatList")
-    .prepend(chat);
-
-}
-
-function newContact() {
-
-  const name = prompt("Имя контакта");
-
-  if (!name || !name.trim()) return;
-
-  const contact = document.createElement("div");
-
-  contact.className = "contact";
-
-  contact.innerHTML = `
-    <div class="avatar">👤</div>
-    <div>
-      <div class="name"></div>
-      <div class="contact-status">Был недавно</div>
-    </div>
-  `;
-
-  contact.querySelector(".name").textContent = name;
-
-  document.getElementById("contactList")
-    .prepend(contact);
-
-}
-
-function invite() {
-
-  const text = "Присоединяйся к STALKTG!";
-
-  if (navigator.share) {
-
-    navigator.share({
-      title: "STALKTG",
-      text: text
-    }).catch(() => {});
-
-  } else {
-
-    alert(text);
-
-  }
-
-}
-
-function editProfile() {
-
-  const name = prompt("Новое имя", currentName);
-
-  if (!name || !name.trim()) return;
-
-  currentName = name.trim();
-
-  document.getElementById("profileName").textContent =
-    currentName;
-
-  document.getElementById("settingsName").textContent =
-    currentName;
-
-}
-
-function changePhoto() {
-
-  const input = document.createElement("input");
-
-  input.type = "file";
-
-  input.accept = "image/*";
-
-  input.onchange = function() {
-
-    const file = input.files[0];
-
-    if (!file) return;
-
-    const reader = new FileReader();
-
-    reader.onload = function() {
-
-      const avatar = document.getElementById("profileAvatar");
-
-      avatar.style.backgroundImage =
-        "url('" + reader.result + "')";
-
-      avatar.style.backgroundSize = "cover";
-
-      avatar.textContent = "";
-
-    };
-
-    reader.readAsDataURL(file);
-
+  chat.onclick = function() {
+    openChat(name.trim(), '👤');
   };
 
-  input.click();
+  document.getElementById('chatList').prepend(chat);
 
+  showPage('chats');
+}
+
+function openChat(name, emoji) {
+  alert(name + '\\n\\nЭто пока макет чата STALKTG. Реальная отправка сообщений будет следующим этапом.');
 }
 
 </script>
