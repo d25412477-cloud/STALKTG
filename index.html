@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STALKTG</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f2f6;
+  color: #222;
+}
+
+header {
+  background: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #159447;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.chat-list {
+  background: white;
+  margin-bottom: 90px;
+}
+
+.chat {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  gap: 12px;
+}
+
+.avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #d7e8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.message {
+  color: #777;
+  margin-top: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+.profile {
+  text-align: center;
+  padding: 25px 15px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #222;
+  color: #20c05a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 18px;
+  margin: 12px;
+}
+
+.card button {
+  background: #f1f2f6;
+  padding: 13px;
+  border-radius: 12px;
+  margin: 5px;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 12px;
+  left: 10px;
+  right: 10px;
+  background: white;
+  border-radius: 28px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 3px;
+  box-shadow: 0 2px 12px #0002;
+}
+
+.nav {
+  background: transparent;
+  color: #333;
+  padding: 8px 3px;
+  border-radius: 20px;
+  flex: 1;
+}
+
+.nav.active {
+  color: #159447;
+  background: #e6f5e9;
+  font-weight: bold;
+}
+
+.nav span {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+input {
+  width: calc(100% - 24px);
+  margin: 12px;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">STALKTG</div>
+  <button onclick="alert('Поиск STALKTG')">🔍</button>
+  <button onclick="alert('Меню STALKTG')">⋮</button>
+</header>
+
+<main>
+
+<section id="chats" class="screen active">
+  <input placeholder="🔍 Поиск">
+
+  <div class="chat-list">
+
+    <div class="chat">
+      <div class="avatar">ST</div>
+      <div class="info">
+        <div class="name">STALKTG Official</div>
+        <div class="message">Добро пожаловать в наш мессенджер!</div>
+      </div>
+    </div>
+
+    <div class="chat">
+      <div class="avatar" style="background:#f36a9b;color:white">SA</div>
+      <div class="info">
+        <div class="name">Santiago</div>
+        <div class="message">Привет! 👋</div>
+      </div>
+    </div>
+
+    <div class="chat">
+      <div class="avatar">🎁</div>
+      <div class="info">
+        <div class="name">Подарки STALKTG</div>
+        <div class="message">Наши уникальные подарки</div>
+      </div>
+    </div>
+
+    <div class="chat">
+      <div class="avatar">👥</div>
+      <div class="info">
+        <div class="name">Общий чат</div>
+        <div class="message">Добро пожаловать!</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contacts" class="screen">
+  <h2 style="padding:20px">Мои контакты</h2>
+  <input placeholder="Поиск контактов">
+
+  <div class="card">
+    <button onclick="alert('Приглашение друзьям')">
+      👤 Пригласить друзей
+    </button>
+  </div>
+
+  <div class="chat">
+    <div class="avatar">SA</div>
+    <div class="info">
+      <div class="name">Santiago</div>
+      <div class="message">Мой профиль</div>
+    </div>
+  </div>
+</section>
+
+<section id="settings" class="screen">
+  <h2 style="padding:20px">Настройки</h2>
+
+  <div class="card">
+    <p>👤 Аккаунт</p>
+    <p>💬 Настройки чатов</p>
+    <p>🔒 Конфиденциальность</p>
+    <p>🔔 Уведомления</p>
+    <p>📁 Данные и память</p>
+    <p>🎨 Оформление</p>
+  </div>
+</section>
+
+<section id="profile" class="screen">
+  <div class="profile">
+    <div class="profile-avatar">ST</div>
+    <h2 id="profileName">Santiago</h2>
+    <p>@stalktg</p>
+  </div>
+
+  <div class="card">
+    <button onclick="changeName()">✏️ Изменить имя</button>
+    <button onclick="changeBio()">📝 Изменить информацию</button>
+  </div>
+
+  <div class="card">
+    <h3>Профиль</h3>
+    <p>Имя: <span id="nameInfo">Santiago</span></p>
+    <p>Username: @stalktg</p>
+  </div>
+
+  <div class="card">
+    <h3>🎁 Подарки</h3>
+    <p>Наши уникальные подарки появятся здесь.</p>
+  </div>
+</section>
+
+</main>
+
+<nav class="bottom">
+  <button class="nav active" onclick="openScreen('chats',this)">
+    💬<span>Чаты</span>
+  </button>
+
+  <button class="nav" onclick="openScreen('contacts',this)">
+    👥<span>Контакты</span>
+  </button>
+
+  <button class="nav" onclick="openScreen('settings',this)">
+    ⚙️<span>Настройки</span>
+  </button>
+
+  <button class="nav" onclick="openScreen('profile',this)">
+    👤<span>Профиль</span>
+  </button>
+</nav>
+
+<script>
+function openScreen(id, button) {
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
+
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('.nav').forEach(nav => {
+    nav.classList.remove('active');
+  });
+
+  button.classList.add('active');
+}
+
+function changeName() {
+  let name = prompt("Введите новое имя");
+
+  if (name && name.trim()) {
+    document.getElementById("profileName").textContent = name;
+    document.getElementById("nameInfo").textContent = name;
+  }
+}
+
+function changeBio() {
+  let bio = prompt("Введите информацию о себе");
+
+  if (bio !== null) {
+    alert("Информация: " + bio);
+  }
+}
+</script>
+
+</body>
+</html>
