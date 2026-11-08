@@ -3,7 +3,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff">
 <title>STALKTG</title>
 
 <style>
@@ -13,55 +14,103 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f1f2f6;
+  background: #f4f5f7;
   color: #222;
-}
-
-header {
-  background: white;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  color: #159447;
-  font-size: 27px;
-  font-weight: bold;
+  font-family: Arial, sans-serif;
 }
 
 button {
+  font: inherit;
   border: none;
   cursor: pointer;
-  font-size: 16px;
 }
 
-.chat-list {
+header {
+  height: 76px;
   background: white;
-  margin-bottom: 90px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 29px;
+  font-weight: bold;
+  color: #159447;
+  flex: 1;
+}
+
+.icon-button {
+  width: 42px;
+  height: 42px;
+  background: transparent;
+  font-size: 27px;
+  color: #222;
+}
+
+.screen {
+  display: none;
+  min-height: calc(100vh - 150px);
+  padding-bottom: 100px;
+}
+
+.screen.active {
+  display: block;
+}
+
+.search {
+  margin: 12px 16px;
+  background: white;
+  border-radius: 30px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 16px;
 }
 
 .chat {
   display: flex;
   align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-  gap: 12px;
+  padding: 15px 18px;
+  gap: 14px;
+  background: white;
+  min-height: 95px;
 }
 
 .avatar {
-  width: 58px;
-  height: 58px;
+  width: 66px;
+  height: 66px;
   border-radius: 50%;
-  background: #d7e8ff;
+  background: #59a4e8;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
   font-weight: bold;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.avatar.pink {
+  background: #e86c9d;
+}
+
+.avatar.purple {
+  background: #8b55dc;
+}
+
+.avatar.green {
+  background: #31b85c;
 }
 
 .info {
@@ -70,99 +119,224 @@ button {
 }
 
 .name {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
-}
-
-.message {
-  color: #777;
-  margin-top: 6px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.screen {
-  display: none;
+.message {
+  margin-top: 7px;
+  color: #888;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.screen.active {
-  display: block;
+.time {
+  color: #999;
+  font-size: 13px;
+  align-self: flex-start;
+  white-space: nowrap;
 }
 
-.profile {
-  text-align: center;
-  padding: 25px 15px;
+.green {
+  color: #159447;
 }
 
-.profile-avatar {
-  width: 100px;
-  height: 100px;
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 105px;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
-  background: #222;
-  color: #20c05a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  font-size: 35px;
-  font-weight: bold;
-}
-
-.card {
-  background: white;
-  border-radius: 20px;
-  padding: 18px;
-  margin: 12px;
-}
-
-.card button {
-  background: #f1f2f6;
-  padding: 13px;
-  border-radius: 12px;
-  margin: 5px;
+  background: #19b647;
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 3px 12px #0002;
 }
 
 .bottom {
   position: fixed;
   bottom: 12px;
-  left: 10px;
-  right: 10px;
+  left: 12px;
+  right: 12px;
+  height: 82px;
+  border-radius: 32px;
   background: white;
-  border-radius: 28px;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 3px;
   box-shadow: 0 2px 12px #0002;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 10;
 }
 
 .nav {
-  background: transparent;
-  color: #333;
-  padding: 8px 3px;
-  border-radius: 20px;
   flex: 1;
-}
-
-.nav.active {
-  color: #159447;
-  background: #e6f5e9;
-  font-weight: bold;
+  height: 68px;
+  border-radius: 25px;
+  background: transparent;
+  color: #222;
+  font-size: 25px;
 }
 
 .nav span {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
-input {
-  width: calc(100% - 24px);
+.nav.active {
+  background: #e8f6eb;
+  color: #159447;
+  font-weight: bold;
+}
+
+.heading {
+  padding: 20px;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.card {
   margin: 12px;
-  padding: 15px;
-  border: none;
+  padding: 20px;
+  background: white;
+  border-radius: 22px;
+}
+
+.setting {
+  padding: 17px 5px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.setting-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  color: white;
+  background: #3399e9;
+}
+
+.setting-name {
+  font-size: 19px;
+}
+
+.setting-desc {
+  margin-top: 6px;
+  color: #999;
+  font-size: 14px;
+}
+
+.profile-top {
+  text-align: center;
+  padding: 25px 15px;
+}
+
+.profile-avatar {
+  width: 115px;
+  height: 115px;
+  margin: auto;
+  border-radius: 50%;
+  background: #252525;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.profile-name {
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: 22px;
+}
+
+.profile-username {
+  color: #999;
+  margin-top: 8px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 8px;
+  margin: 0 12px;
+}
+
+.profile-actions button {
+  flex: 1;
+  background: white;
+  border-radius: 20px;
+  padding: 18px 5px;
+  font-size: 14px;
+}
+
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+}
+
+.tabs button {
+  padding: 12px;
   border-radius: 25px;
-  font-size: 16px;
+  background: #f1f2f5;
+  color: #888;
+  white-space: nowrap;
+}
+
+.tabs button.active {
+  background: #e8f6eb;
+  color: #159447;
+  font-weight: bold;
+}
+
+.page-title {
+  padding: 20px;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 13px 18px;
+  background: white;
+}
+
+.contact-status {
+  color: #999;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+input, textarea {
+  font-family: Arial, sans-serif;
+}
+
+@media (max-width: 380px) {
+  .logo {
+    font-size: 25px;
+  }
+
+  .nav span {
+    font-size: 12px;
+  }
+
+  .avatar {
+    width: 58px;
+    height: 58px;
+  }
 }
 </style>
 </head>
@@ -171,159 +345,518 @@ input {
 
 <header>
   <div class="logo">STALKTG</div>
-  <button onclick="alert('Поиск STALKTG')">🔍</button>
-  <button onclick="alert('Меню STALKTG')">⋮</button>
+  <button class="icon-button" onclick="searchChats()">⌕</button>
+  <button class="icon-button" onclick="menu()">⋮</button>
 </header>
 
-<main>
+<!-- ЧАТЫ -->
 
 <section id="chats" class="screen active">
-  <input placeholder="🔍 Поиск">
 
-  <div class="chat-list">
+  <div class="search">
+    🔍
+    <input id="chatSearch"
+      placeholder="Поиск"
+      oninput="filterChats()">
+  </div>
+
+  <div id="chatList">
 
     <div class="chat">
       <div class="avatar">ST</div>
       <div class="info">
-        <div class="name">STALKTG Official</div>
-        <div class="message">Добро пожаловать в наш мессенджер!</div>
+        <div class="name">STALKTG</div>
+        <div class="message">Добро пожаловать! 👋</div>
       </div>
+      <div class="time">09:40</div>
     </div>
 
     <div class="chat">
-      <div class="avatar" style="background:#f36a9b;color:white">SA</div>
+      <div class="avatar pink">SA</div>
       <div class="info">
         <div class="name">Santiago</div>
-        <div class="message">Привет! 👋</div>
+        <div class="message">Привет!</div>
       </div>
+      <div class="time">09:38</div>
     </div>
 
     <div class="chat">
-      <div class="avatar">🎁</div>
+      <div class="avatar purple">🎁</div>
       <div class="info">
         <div class="name">Подарки STALKTG</div>
-        <div class="message">Наши уникальные подарки</div>
+        <div class="message">Наши подарки</div>
       </div>
+      <div class="time">09:30</div>
     </div>
 
     <div class="chat">
-      <div class="avatar">👥</div>
+      <div class="avatar green">👥</div>
       <div class="info">
         <div class="name">Общий чат</div>
-        <div class="message">Добро пожаловать!</div>
+        <div class="message">Общение пользователей</div>
+      </div>
+      <div class="time">09:20</div>
+    </div>
+
+  </div>
+
+  <button class="fab" onclick="newChat()">✉</button>
+
+</section>
+
+<!-- КОНТАКТЫ -->
+
+<section id="contacts" class="screen">
+
+  <div class="page-title">Мои контакты</div>
+
+  <div class="search">
+    🔍
+    <input id="contactSearch"
+      placeholder="Поиск контактов"
+      oninput="filterContacts()">
+  </div>
+
+  <div class="card">
+
+    <div class="setting" onclick="invite()">
+      <div class="setting-icon">👤</div>
+      <div class="setting-name">Пригласить друзей</div>
+    </div>
+
+    <div class="setting" onclick="alert('Здесь будут недавние звонки')">
+      <div class="setting-icon" style="background:#35bb55">☎</div>
+      <div class="setting-name">Недавние звонки</div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <div class="green" style="font-weight:bold;margin-bottom:15px">
+      Сортировка по времени захода
+    </div>
+
+    <div id="contactList">
+
+      <div class="contact">
+        <div class="avatar pink">SA</div>
+        <div>
+          <div class="name">Santiago</div>
+          <div class="contact-status">В сети</div>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div class="avatar">ST</div>
+        <div>
+          <div class="name">STALKTG</div>
+          <div class="contact-status">Был недавно</div>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div class="avatar purple">👤</div>
+        <div>
+          <div class="name">Новый пользователь</div>
+          <div class="contact-status">Был недавно</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <button class="fab" onclick="newContact()">＋</button>
+
+</section>
+
+<!-- НАСТРОЙКИ -->
+
+<section id="settings" class="screen">
+
+  <div class="profile-top">
+    <div class="profile-avatar">ST</div>
+    <div class="profile-name" id="settingsName">Santiago</div>
+    <div class="profile-username">@stalktg</div>
+  </div>
+
+  <div class="card">
+
+    <div class="setting" onclick="editProfile()">
+      <div class="setting-icon">👤</div>
+      <div>
+        <div class="setting-name">Аккаунт</div>
+        <div class="setting-desc">Имя пользователя, информация</div>
+      </div>
+    </div>
+
+    <div class="setting" onclick="alert('Настройки чатов')">
+      <div class="setting-icon" style="background:#e9a326">💬</div>
+      <div>
+        <div class="setting-name">Настройки чатов</div>
+        <div class="setting-desc">Обои, темы, оформление</div>
+      </div>
+    </div>
+
+    <div class="setting" onclick="alert('Настройки конфиденциальности')">
+      <div class="setting-icon" style="background:#35bb55">🔑</div>
+      <div>
+        <div class="setting-name">Конфиденциальность</div>
+        <div class="setting-desc">Время захода, безопасность</div>
+      </div>
+    </div>
+
+    <div class="setting" onclick="alert('Настройки уведомлений')">
+      <div class="setting-icon" style="background:#e65c76">🔔</div>
+      <div>
+        <div class="setting-name">Уведомления</div>
+        <div class="setting-desc">Звуки, сообщения</div>
+      </div>
+    </div>
+
+    <div class="setting" onclick="alert('Настройки памяти')">
+      <div class="setting-icon" style="background:#4389e9">📊</div>
+      <div>
+        <div class="setting-name">Данные и память</div>
+        <div class="setting-desc">Загрузка медиафайлов</div>
+      </div>
+    </div>
+
+    <div class="setting" onclick="alert('Управление устройствами')">
+      <div class="setting-icon" style="background:#35b7b7">💻</div>
+      <div>
+        <div class="setting-name">Устройства</div>
+        <div class="setting-desc">Активные сеансы</div>
       </div>
     </div>
 
   </div>
+
 </section>
 
-<section id="contacts" class="screen">
-  <h2 style="padding:20px">Мои контакты</h2>
-  <input placeholder="Поиск контактов">
-
-  <div class="card">
-    <button onclick="alert('Приглашение друзьям')">
-      👤 Пригласить друзей
-    </button>
-  </div>
-
-  <div class="chat">
-    <div class="avatar">SA</div>
-    <div class="info">
-      <div class="name">Santiago</div>
-      <div class="message">Мой профиль</div>
-    </div>
-  </div>
-</section>
-
-<section id="settings" class="screen">
-  <h2 style="padding:20px">Настройки</h2>
-
-  <div class="card">
-    <p>👤 Аккаунт</p>
-    <p>💬 Настройки чатов</p>
-    <p>🔒 Конфиденциальность</p>
-    <p>🔔 Уведомления</p>
-    <p>📁 Данные и память</p>
-    <p>🎨 Оформление</p>
-  </div>
-</section>
+<!-- ПРОФИЛЬ -->
 
 <section id="profile" class="screen">
-  <div class="profile">
-    <div class="profile-avatar">ST</div>
-    <h2 id="profileName">Santiago</h2>
-    <p>@stalktg</p>
+
+  <div class="profile-top">
+
+    <div class="profile-avatar" id="profileAvatar">ST</div>
+
+    <div class="profile-name" id="profileName">Santiago</div>
+
+    <div class="profile-username" id="profileUsername">
+      @stalktg
+    </div>
+
+  </div>
+
+  <div class="profile-actions">
+
+    <button onclick="changePhoto()">📷<br>Выбрать фото</button>
+
+    <button onclick="editProfile()">✏️<br>Изменить</button>
+
+    <button onclick="openScreen('settings')">⚙️<br>Настройки</button>
+
   </div>
 
   <div class="card">
-    <button onclick="changeName()">✏️ Изменить имя</button>
-    <button onclick="changeBio()">📝 Изменить информацию</button>
+
+    <div class="green" style="font-weight:bold">
+      Канал
+    </div>
+
+    <div class="contact" style="padding-left:0">
+      <div class="avatar pink">ST</div>
+      <div>
+        <div class="name">STALKTG</div>
+        <div class="contact-status">Наш официальный канал</div>
+      </div>
+    </div>
+
   </div>
 
   <div class="card">
-    <h3>Профиль</h3>
-    <p>Имя: <span id="nameInfo">Santiago</span></p>
-    <p>Username: @stalktg</p>
+
+    <div style="padding:12px 0">
+      <div id="profilePhone">Номер не указан</div>
+      <div class="contact-status">Номер телефона</div>
+    </div>
+
+    <div style="padding:12px 0">
+      <div id="profileUser">@stalktg</div>
+      <div class="contact-status">Username</div>
+    </div>
+
+    <div style="padding:12px 0">
+      <div id="profileBio">Привет! Я в STALKTG</div>
+      <div class="contact-status">О себе</div>
+    </div>
+
   </div>
 
   <div class="card">
-    <h3>🎁 Подарки</h3>
-    <p>Наши уникальные подарки появятся здесь.</p>
+
+    <div class="tabs">
+      <button class="active">Публикации</button>
+      <button>Архив публикаций</button>
+      <button onclick="openScreen('gifts')">Подарки</button>
+    </div>
+
+    <p style="color:#999;text-align:center;padding:20px">
+      Здесь будут твои публикации
+    </p>
+
   </div>
+
 </section>
 
-</main>
+<!-- ПОДАРКИ -->
+
+<section id="gifts" class="screen">
+
+  <div class="page-title">🎁 Подарки STALKTG</div>
+
+  <div class="card">
+    <h3>Наши подарки</h3>
+    <p>Здесь будут уникальные подарки STALKTG.</p>
+    <p>Позже добавим коллекцию, магазин и покупку подарков.</p>
+  </div>
+
+</section>
+
+<!-- НИЖНЯЯ ПАНЕЛЬ -->
 
 <nav class="bottom">
-  <button class="nav active" onclick="openScreen('chats',this)">
-    💬<span>Чаты</span>
+
+  <button class="nav active"
+    onclick="openScreen('chats',this)">
+    ☏
+    <span>Чаты</span>
   </button>
 
-  <button class="nav" onclick="openScreen('contacts',this)">
-    👥<span>Контакты</span>
+  <button class="nav"
+    onclick="openScreen('contacts',this)">
+    ♙
+    <span>Контакты</span>
   </button>
 
-  <button class="nav" onclick="openScreen('settings',this)">
-    ⚙️<span>Настройки</span>
+  <button class="nav"
+    onclick="openScreen('settings',this)">
+    ⚙
+    <span>Настройки</span>
   </button>
 
-  <button class="nav" onclick="openScreen('profile',this)">
-    👤<span>Профиль</span>
+  <button class="nav"
+    onclick="openScreen('profile',this)">
+    👤
+    <span>Профиль</span>
   </button>
+
 </nav>
 
 <script>
+
+let currentName = "Santiago";
+let currentUsername = "stalktg";
+let currentBio = "Привет! Я в STALKTG";
+
 function openScreen(id, button) {
-  document.querySelectorAll('.screen').forEach(screen => {
-    screen.classList.remove('active');
+
+  document.querySelectorAll(".screen").forEach(s => {
+    s.classList.remove("active");
   });
 
-  document.getElementById(id).classList.add('active');
+  const target = document.getElementById(id);
 
-  document.querySelectorAll('.nav').forEach(nav => {
-    nav.classList.remove('active');
+  if (target) {
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav").forEach(n => {
+    n.classList.remove("active");
   });
 
-  button.classList.add('active');
-}
-
-function changeName() {
-  let name = prompt("Введите новое имя");
-
-  if (name && name.trim()) {
-    document.getElementById("profileName").textContent = name;
-    document.getElementById("nameInfo").textContent = name;
+  if (button) {
+    button.classList.add("active");
   }
+
+  window.scrollTo(0, 0);
+
 }
 
-function changeBio() {
-  let bio = prompt("Введите информацию о себе");
+function searchChats() {
 
-  if (bio !== null) {
-    alert("Информация: " + bio);
+  openScreen("chats");
+
+  document.getElementById("chatSearch").focus();
+
+}
+
+function menu() {
+
+  alert("Меню STALKTG");
+
+}
+
+function filterChats() {
+
+  const query = document
+    .getElementById("chatSearch")
+    .value.toLowerCase();
+
+  document.querySelectorAll("#chatList .chat")
+    .forEach(chat => {
+
+      chat.style.display =
+        chat.textContent.toLowerCase().includes(query)
+        ? "flex"
+        : "none";
+
+    });
+
+}
+
+function filterContacts() {
+
+  const query = document
+    .getElementById("contactSearch")
+    .value.toLowerCase();
+
+  document.querySelectorAll("#contactList .contact")
+    .forEach(contact => {
+
+      contact.style.display =
+        contact.textContent.toLowerCase().includes(query)
+        ? "flex"
+        : "none";
+
+    });
+
+}
+
+function newChat() {
+
+  const name = prompt("Имя нового чата");
+
+  if (!name || !name.trim()) return;
+
+  const chat = document.createElement("div");
+
+  chat.className = "chat";
+
+  chat.innerHTML = `
+    <div class="avatar">👤</div>
+    <div class="info">
+      <div class="name"></div>
+      <div class="message">Новый чат</div>
+    </div>
+  `;
+
+  chat.querySelector(".name").textContent = name;
+
+  document.getElementById("chatList")
+    .prepend(chat);
+
+}
+
+function newContact() {
+
+  const name = prompt("Имя контакта");
+
+  if (!name || !name.trim()) return;
+
+  const contact = document.createElement("div");
+
+  contact.className = "contact";
+
+  contact.innerHTML = `
+    <div class="avatar">👤</div>
+    <div>
+      <div class="name"></div>
+      <div class="contact-status">Был недавно</div>
+    </div>
+  `;
+
+  contact.querySelector(".name").textContent = name;
+
+  document.getElementById("contactList")
+    .prepend(contact);
+
+}
+
+function invite() {
+
+  const text = "Присоединяйся к STALKTG!";
+
+  if (navigator.share) {
+
+    navigator.share({
+      title: "STALKTG",
+      text: text
+    }).catch(() => {});
+
+  } else {
+
+    alert(text);
+
   }
+
 }
+
+function editProfile() {
+
+  const name = prompt("Новое имя", currentName);
+
+  if (!name || !name.trim()) return;
+
+  currentName = name.trim();
+
+  document.getElementById("profileName").textContent =
+    currentName;
+
+  document.getElementById("settingsName").textContent =
+    currentName;
+
+}
+
+function changePhoto() {
+
+  const input = document.createElement("input");
+
+  input.type = "file";
+
+  input.accept = "image/*";
+
+  input.onchange = function() {
+
+    const file = input.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function() {
+
+      const avatar = document.getElementById("profileAvatar");
+
+      avatar.style.backgroundImage =
+        "url('" + reader.result + "')";
+
+      avatar.style.backgroundSize = "cover";
+
+      avatar.textContent = "";
+
+    };
+
+    reader.readAsDataURL(file);
+
+  };
+
+  input.click();
+
+}
+
 </script>
 
 </body>
